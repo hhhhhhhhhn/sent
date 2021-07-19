@@ -670,7 +670,7 @@ configure(XEvent *e)
 void
 usage()
 {
-	die("usage: %s [file]", argv0);
+	die("usage: %s [-v] [-c fgcolor] [-b bgcolor] [-f font] [-u usable] [file]", argv0);
 }
 
 int
@@ -682,6 +682,19 @@ main(int argc, char *argv[])
 	case 'v':
 		fprintf(stderr, "sent-"VERSION"\n");
 		return 0;
+	case 'c':
+		colors[0] = EARGF(usage());
+		break;
+	case 'b':
+		colors[1] = EARGF(usage());
+		break;
+	case 'f':
+		fontfallbacks[0] = EARGF(usage());
+		break;
+	case 'u':
+		usableheight = atof(EARGF(usage()));
+		usablewidth = usableheight;
+		break;
 	default:
 		usage();
 	} ARGEND

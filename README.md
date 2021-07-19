@@ -1,3 +1,11 @@
+**NOTE**
+This is a small fork of sent. It:
+- Puts images in fullscreen
+- Adds some command line flags
+
+Below is the default readme.
+---
+
 sent is a simple plaintext presentation tool.
 
 sent does not need latex, libreoffice or any other fancy file format, it uses
@@ -25,7 +33,7 @@ You can navigate with the arrow keys and quit with `q`.
 
 Usage
 
-	sent [FILE]
+	sent [-v] [-c fgcolor] [-b bgcolor] [-f font] [-u usable] [FILE]
 
 If FILE is omitted or equals `-`, stdin will be read. Produce image slides by
 prepending a `@` in front of the filename as a single paragraph. Lines starting

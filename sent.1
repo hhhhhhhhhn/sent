@@ -6,6 +6,10 @@
 .Sh SYNOPSIS
 .Nm
 .Op Fl v
+.Op Fl c Ar fgcolor
+.Op Fl b Ar bgcolor
+.Op Fl f Ar font
+.Op Fl u Ar usable
 .Op Ar file
 .Sh DESCRIPTION
 .Nm
@@ -21,6 +25,14 @@ few minutes.
 .Bl -tag -width Ds
 .It Fl v
 Print version information to stdout and exit.
+.It Fl c Ar fgcolor
+Sets the foreground color (By default #ffffff).
+.It Fl b Ar bgcolor
+Sets the background color (By default #000000).
+.It Fl f Ar font
+Sets the font (By default "dejavu sans").
+.It Fl u Ar usable
+Sets the amount of the screen used (By default 0.75).
 .El
 .Sh USAGE
 .Bl -tag -width Ds

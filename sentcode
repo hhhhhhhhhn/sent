@@ -2,22 +2,26 @@
 MATCHES=$(mktemp /tmp/sentXXXXX)
 STDIN=$(mktemp /tmp/sentXXXX)
 
-tr "\n" "\f" | tee $STDIN | grep -o '```[^`]*```' > $MATCHES
+CHAR=$(echo -ne "\u9991")
+BACKTICKS='```'
+
+MATCH="$CHAR[^$CHAR]*$CHAR"
+
+sed "s/$BACKTICKS/$CHAR/g" | tr "\n" "\f" | tee $STDIN | grep -Eo "$MATCH" > $MATCHES
 
 while read -r line; do
 	HASH=$(echo $line | md5sum - | cut -d" " -f1)
-	SYNTAX=$(echo "$line" | grep -o '```\w*' | cut -b 4-)
+	SYNTAX=$(echo "$line" | grep -o "$CHAR\w*" | cut -b 4-)
 	echo "$line" \
-		| sed -E 's/```\w*\f(.*)\f```/\1/' \
+		| sed -E "s/$CHAR\w*\W(.*)\W$CHAR/\1/" \
 		| tr "\f" "\n"  \
-		| highlight -K 20 --syntax $SYNTAX -I -Osvg - \
+		| highlight -K 20 -I -Osvg -S "$SYNTAX" - \
 		| 2ff > /tmp/$HASH.ff
 	
-	MATCH='```[^`]*```'
-	sed -i "s|$MATCH|@/tmp/$HASH.ff|" $STDIN
+	sed -Ei "s|$MATCH|@/tmp/$HASH.ff|" $STDIN
 done <$MATCHES 
 
-<$STDIN tr "\f" "\n"
+<$STDIN tr "\f" "\n" | sed "s/$CHAR/$BACKTICKS/g"
 
 rm "$MATCHES"
 rm "$STDIN"

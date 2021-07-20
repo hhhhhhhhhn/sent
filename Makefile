@@ -44,10 +44,14 @@ dist: clean
 	@rm -rf sent-${VERSION}
 
 install: all
-	@echo installing executable file to ${DESTDIR}${PREFIX}/bin
+	@echo installing executable files to ${DESTDIR}${PREFIX}/bin
 	@mkdir -p ${DESTDIR}${PREFIX}/bin
 	@cp -f sent ${DESTDIR}${PREFIX}/bin
 	@chmod 755 ${DESTDIR}${PREFIX}/bin/sent
+	@cp -f sentcode ${DESTDIR}${PREFIX}/bin
+	@chmod 755 ${DESTDIR}${PREFIX}/bin/sentcode
+	@cp -f sentshell ${DESTDIR}${PREFIX}/bin
+	@chmod 755 ${DESTDIR}${PREFIX}/bin/sentshell
 	@echo installing manual page to ${DESTDIR}${MANPREFIX}/man1
 	@mkdir -p ${DESTDIR}${MANPREFIX}/man1
 	@cp sent.1 ${DESTDIR}${MANPREFIX}/man1/sent.1
@@ -56,5 +60,7 @@ install: all
 uninstall:
 	@echo removing executable file from ${DESTDIR}${PREFIX}/bin
 	@rm -f ${DESTDIR}${PREFIX}/bin/sent
+	@rm -f ${DESTDIR}${PREFIX}/bin/sentshell
+	@rm -f ${DESTDIR}${PREFIX}/bin/sentcode
 
 .PHONY: all options clean dist install uninstall cscope

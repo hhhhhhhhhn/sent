@@ -311,8 +311,11 @@ ffscale(Image *img)
 void
 ffdraw(Image *img)
 {
+	int xoffset = (xw.w - img->ximg->width) / 2;
+	int yoffset = (xw.h - img->ximg->height) / 2;
+
 	XPutImage(xw.dpy, xw.win, d->gc, img->ximg, 0, 0,
-	          0, 0, img->ximg->width, img->ximg->height);
+	          xoffset, yoffset, img->ximg->width, img->ximg->height);
 	XFlush(xw.dpy);
 }
 

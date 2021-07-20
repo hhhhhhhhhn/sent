@@ -64,5 +64,26 @@ and rebuild.
 😠😡😢😣😥😦😧😨😩😪😫😭😮😯😰😱
 😲😳😴😵😶😷😸😹😺😻😼😽😾😿🙀☠
 
+New stuff!
+
+Shell scripting!
+\
+Output of "date":
+!date
+
+This can be multiline as well!
+!man sent | head
+
+```go
+func main() {
+    newFeatures := []string{
+        "images in fullscreen",
+        "command line flags",
+        "preprocessors (like this code)",
+    }
+    fmt.Println(newFeatures)
+}
+```
+
 thanks.
 questions?

@@ -2,8 +2,15 @@
 This is a small fork of sent. It:
 - Puts images in fullscreen
 - Adds some command line flags
+- Adds some preprocessors:
+  - sentshell: Lines starting with "!" will be evalued as shell commands
+  - sentcode: Markdown style code blocks will be rendered using "highlight"
 
-Below is the default readme.
+To test all the new stuff, run
+
+	<example | sentcode | sentshell | sent
+
+Below is the actual readme.
 ---
 
 sent is a simple plaintext presentation tool.

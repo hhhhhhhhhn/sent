@@ -9,7 +9,8 @@
 .Op Fl c Ar fgcolor
 .Op Fl b Ar bgcolor
 .Op Fl f Ar font
-.Op Fl u Ar usable
+.Op Fl t Ar textsize
+.Op Fl i Ar imagesize
 .Op Ar file
 .Sh DESCRIPTION
 .Nm
@@ -31,8 +32,10 @@ Sets the foreground color (By default #ffffff).
 Sets the background color (By default #000000).
 .It Fl f Ar font
 Sets the font (By default "dejavu sans").
-.It Fl u Ar usable
-Sets the amount of the screen used (By default 0.75).
+.It Fl t Ar textsize
+Sets the amount of the screen used by text (By default 0.75).
+.It Fl i Ar imagesize
+Sets the amount of the screen used by images (By default 1).
 .El
 .Sh USAGE
 .Bl -tag -width Ds

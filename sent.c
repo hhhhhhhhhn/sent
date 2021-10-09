@@ -64,7 +64,8 @@ typedef struct {
 	XSetWindowAttributes attrs;
 	int scr;
 	int w, h;
-	int uw, uh; /* usable dimensions for drawing text and images */
+	int uw, uh; /* usable dimensions for drawing text */
+	int uiw, uih; /* usable dimensions for drawing images */
 } XWindow;
 
 typedef union {
@@ -259,13 +260,13 @@ void
 ffprepare(Image *img)
 {
 	int depth = DefaultDepth(xw.dpy, xw.scr);
-	int width = xw.w;
-	int height = xw.h;
+	int width = xw.uiw;
+	int height = xw.uih;
 
-	if (xw.w * img->bufheight > xw.h * img->bufwidth)
-		width = img->bufwidth * xw.h / img->bufheight;
+	if (xw.uiw * img->bufheight > xw.uih * img->bufwidth)
+		width = img->bufwidth * xw.uih / img->bufheight;
 	else
-		height = img->bufheight * xw.w / img->bufwidth;
+		height = img->bufheight * xw.uiw / img->bufwidth;
 
 	if (depth < 24)
 		die("sent: Display color depths < 24 not supported");
@@ -486,6 +487,8 @@ resize(int width, int height)
 	xw.h = height;
 	xw.uw = usablewidth * width;
 	xw.uh = usableheight * height;
+	xw.uiw = usableimagewidth * width;
+	xw.uih = usableimageheight * height;
 	drw_resize(d, width, height);
 }
 
@@ -673,7 +676,7 @@ configure(XEvent *e)
 void
 usage()
 {
-	die("usage: %s [-v] [-c fgcolor] [-b bgcolor] [-f font] [-u usable] [file]", argv0);
+	die("usage: %s [-v] [-c fgcolor] [-b bgcolor] [-f font] [-t textsize] [-i imagesize] [file]", argv0);
 }
 
 int
@@ -694,9 +697,13 @@ main(int argc, char *argv[])
 	case 'f':
 		fontfallbacks[0] = EARGF(usage());
 		break;
-	case 'u':
+	case 't':
 		usableheight = atof(EARGF(usage()));
 		usablewidth = usableheight;
+		break;
+	case 'i':
+		usableimageheight = atof(EARGF(usage()));
+		usableimagewidth = usableimageheight;
 		break;
 	default:
 		usage();

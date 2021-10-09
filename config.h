@@ -16,9 +16,14 @@ static const char *colors[] = {
 
 static const float linespacing = 1.4;
 
-/* how much screen estate is to be used at max for the content */
+/* how much screen estate is to be used at max for the text */
 float usablewidth = 0.75;
 float usableheight = 0.75;
+
+/* how much screen estate is to be used at max for the images */
+float usableimagewidth = 1;
+float usableimageheight = 1;
+
 
 static Mousekey mshortcuts[] = {
 	/* button         function        argument */

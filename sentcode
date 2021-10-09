@@ -19,7 +19,7 @@ while read -r line; do
 	FONTSIZE=$(expr 540 / $CODELINES)
 
 	[ -e "code/$HASH.ff" ] || echo "$line" \
-		| sed -E "s/$CHAR\w*\W(.*)\W$CHAR/\1/" \
+		| sed -E "s/$CHAR\w*\W(.*)\W$CHAR/\1\n/" \
 		| tr "\f" "\n"  \
 		| highlight -K $FONTSIZE -I -Osvg -S "$SYNTAX" - \
 		| 2ff > code/$HASH.ff

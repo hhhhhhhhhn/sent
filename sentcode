@@ -2,7 +2,7 @@
 MATCHES=$(mktemp /tmp/sentXXXXX)
 STDIN=$(mktemp /tmp/sentXXXX)
 
-CHAR=$(echo -ne "\u9991")
+CHAR="馑"
 BACKTICKS='```'
 
 MATCH="$CHAR[^$CHAR]*$CHAR"

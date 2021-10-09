@@ -1,7 +1,7 @@
 **NOTE**
 This is a small fork of sent. It:
-- Puts images in fullscreen
-- Adds some command line flags
+- Adds pdf saving from [BigHeadGeorge's fork](https://github.com/BigHeadGeorge/sent-pdf)
+- Adds some command line flags (see below)
 - Adds some preprocessors:
   - sentshell: Lines starting with "!" will be evalued as shell commands
   - sentcode: Markdown style code blocks will be rendered using "highlight"
@@ -9,6 +9,8 @@ This is a small fork of sent. It:
 To test all the new stuff, run
 
 	<example | sentcode | sentshell | sent
+
+and press "s"
 
 Below is the actual readme.
 ---
@@ -40,7 +42,7 @@ You can navigate with the arrow keys and quit with `q`.
 
 Usage
 
-	sent [-v] [-c fgcolor] [-b bgcolor] [-f font] [-u usable] [FILE]
+	sent [-v] [-c fgcolor] [-b bgcolor] [-f font] [-t textsize] [-i imagesize] [FILE]
 
 If FILE is omitted or equals `-`, stdin will be read. Produce image slides by
 prepending a `@` in front of the filename as a single paragraph. Lines starting
@@ -55,6 +57,7 @@ with `#` will be ignored. A `\` at the beginning of the line escapes `@` and
 	- Xlib
 	- Xft
 	- farbfeld
+	- cairo
 	
 	sent FILENAME
 	one slide per paragraph
